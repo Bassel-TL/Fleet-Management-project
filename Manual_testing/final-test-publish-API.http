@@ -1,0 +1,209 @@
+### Welcome to cds.services
+https://fleetmanagement-srv-unexpected-possum-sr.cfapps.eu10.hana.ondemand.com/
+
+### Admin services  Get  All
+## Get All Cities
+GET https://fleetmanagement-srv-unexpected-possum-sr.cfapps.eu10.hana.ondemand.com/admin/Cities
+
+### Get All Requests
+GET https://fleetmanagement-srv-unexpected-possum-sr.cfapps.eu10.hana.ondemand.com/admin/Requests
+
+### Get All EnRouteCities
+GET https://fleetmanagement-srv-unexpected-possum-sr.cfapps.eu10.hana.ondemand.com/admin/EnRouteCities
+
+### Get All Member
+GET https://fleetmanagement-srv-unexpected-possum-sr.cfapps.eu10.hana.ondemand.com/admin/Member
+
+### Get All Chitchat
+GET https://fleetmanagement-srv-unexpected-possum-sr.cfapps.eu10.hana.ondemand.com/admin/Chitchat
+
+### Get All Music
+GET https://fleetmanagement-srv-unexpected-possum-sr.cfapps.eu10.hana.ondemand.com/admin/Music
+
+### Get All Luggage
+GET https://fleetmanagement-srv-unexpected-possum-sr.cfapps.eu10.hana.ondemand.com/admin/Luggage
+
+### Get All Ride
+GET https://fleetmanagement-srv-unexpected-possum-sr.cfapps.eu10.hana.ondemand.com/admin/Ride
+
+### Get All Review
+GET https://fleetmanagement-srv-unexpected-possum-sr.cfapps.eu10.hana.ondemand.com/admin/Review
+
+############################################################################################################
+############################################################################################################
+### Admin services Get by ID 
+## Get Citie
+GET https://fleetmanagement-srv-unexpected-possum-sr.cfapps.eu10.hana.ondemand.com/admin/Cities(5)
+
+### Get Request
+GET https://fleetmanagement-srv-unexpected-possum-sr.cfapps.eu10.hana.ondemand.com/admin/Requests(2)
+
+### Get EnRouteCitie
+GET https://fleetmanagement-srv-unexpected-possum-sr.cfapps.eu10.hana.ondemand.com/admin/EnRouteCities(2)
+
+### Get Member
+GET https://fleetmanagement-srv-unexpected-possum-sr.cfapps.eu10.hana.ondemand.com/admin/Member(9)
+
+### Get Chitchat
+GET https://fleetmanagement-srv-unexpected-possum-sr.cfapps.eu10.hana.ondemand.com/admin/Chitchat(1)
+
+### Get Music
+GET https://fleetmanagement-srv-unexpected-possum-sr.cfapps.eu10.hana.ondemand.com/admin/Music(1)
+
+### Get Luggage
+GET https://fleetmanagement-srv-unexpected-possum-sr.cfapps.eu10.hana.ondemand.com/admin/Luggage(1)
+
+### Get Ride
+GET https://fleetmanagement-srv-unexpected-possum-sr.cfapps.eu10.hana.ondemand.com/admin/Ride(2)
+
+### Get Review
+GET https://fleetmanagement-srv-unexpected-possum-sr.cfapps.eu10.hana.ondemand.com/admin/Review(1)
+
+
+
+############################################################################################################
+############################################################################################################
+### Admin services DELETE by ID 
+## DELETE Citie
+DELETE https://fleetmanagement-srv-unexpected-possum-sr.cfapps.eu10.hana.ondemand.com/admin/Cities(5)
+
+### DELETE Request
+DELETE https://fleetmanagement-srv-unexpected-possum-sr.cfapps.eu10.hana.ondemand.com/admin/Requests(2)
+
+### DELETE EnRouteCitie
+DELETE https://fleetmanagement-srv-unexpected-possum-sr.cfapps.eu10.hana.ondemand.com/admin/EnRouteCities(2)
+
+### DELETE Member
+DELETE https://fleetmanagement-srv-unexpected-possum-sr.cfapps.eu10.hana.ondemand.com/admin/Member(9)
+
+### DELETE Chitchat
+DELETE https://fleetmanagement-srv-unexpected-possum-sr.cfapps.eu10.hana.ondemand.com/admin/Chitchat(1)
+
+### DELETE Music
+DELETE https://fleetmanagement-srv-unexpected-possum-sr.cfapps.eu10.hana.ondemand.com/admin/Music(1)
+
+### DELETE Luggage
+DELETE https://fleetmanagement-srv-unexpected-possum-sr.cfapps.eu10.hana.ondemand.com/admin/Luggage(1)
+
+### DELETE Ride
+DELETE https://fleetmanagement-srv-unexpected-possum-sr.cfapps.eu10.hana.ondemand.com/admin/Ride(2)
+
+### DELETE Review
+DELETE https://fleetmanagement-srv-unexpected-possum-sr.cfapps.eu10.hana.ondemand.com/admin/Review(1)
+
+
+
+############################################################################################################
+############################################################################################################
+### Admin services Update by ID 
+## Update Citie
+PUT https://fleetmanagement-srv-unexpected-possum-sr.cfapps.eu10.hana.ondemand.com/admin/Cities(5)
+Content-Type: application/json
+
+{"ID":5,"name":"Pécs","descr":"edit by bassel, located on the slopes of the Mecsek mountains in the south-west of the country ","status":"good ","weather":"cloudy"}
+
+### Update Request
+PUT https://fleetmanagement-srv-unexpected-possum-sr.cfapps.eu10.hana.ondemand.com/admin/Requests(2)
+Content-Type: application/json
+
+{"ID":2,"status":"valid","approval":"edit by bassel, none","refund":8000,"requester_ID":6,"ride_ID":2}
+
+### Update EnRouteCitie
+PUT https://fleetmanagement-srv-unexpected-possum-sr.cfapps.eu10.hana.ondemand.com/admin/EnRouteCities(2)
+Content-Type: application/json
+
+{"ID":2,"city_ID":2,"ride_ID":3,"requester_ID":6}
+
+### Update Member
+PUT https://fleetmanagement-srv-unexpected-possum-sr.cfapps.eu10.hana.ondemand.com/admin/Member(9)
+Content-Type: application/json
+
+{"ID":9,"first_name":"Bassel","last_name":"aalf","gender":"male","credit":100,"birthdate":"26-06-1991","role_n":"DRIVER","password_n":"1234"}
+
+### Update Chitchat
+PUT https://fleetmanagement-srv-unexpected-possum-sr.cfapps.eu10.hana.ondemand.com/admin/Chitchat(1)
+Content-Type: application/json
+
+{"ID":1,"description":"edit by bassel, very serious chat"}
+
+### Update Music
+PUT https://fleetmanagement-srv-unexpected-possum-sr.cfapps.eu10.hana.ondemand.com/admin/Music(1)
+
+{"ID":1,"description":"edit by bassel, Jazz"}
+
+### Update Luggage
+PUT https://fleetmanagement-srv-unexpected-possum-sr.cfapps.eu10.hana.ondemand.com/admin/Luggage(1)
+Content-Type: application/json
+
+{"ID":1,"description":"edit by bassel, CABIN-SIZED (19 TO 22 INCHES)"}
+
+### Update Ride
+PUT https://fleetmanagement-srv-unexpected-possum-sr.cfapps.eu10.hana.ondemand.com/admin/Ride(1)
+Content-Type: application/json
+
+{"ID":2,"ride_date":"01/02/20","ride_time":"12:00","seats_available":6,"ride_status":"Complete","ride_fee":200,"seats_booked":6,"meeting_point":"Budapest, Kossuth Lajos tér 1-3, 1055","cancel_reason":null,"vehicle_model":"edit by bassel, STATION WAGON.","vehicle_number":"edit by bassel, Chrysler Aspen Hybrid","vehicle_color":"Black","driver_ID":10,"source_ID":1,"destination_ID":3,"luggage_ID":2}
+
+### Update Review
+PUT https://fleetmanagement-srv-unexpected-possum-sr.cfapps.eu10.hana.ondemand.com/admin/Review(1)
+Content-Type: application/json
+
+{"ID":1,"score":9,"description":"good ride","traveler_ID":5,"driver_ID":2}
+
+
+
+############################################################################################################
+############################################################################################################
+### Add services add new
+## add Citie
+POST https://fleetmanagement-srv-unexpected-possum-sr.cfapps.eu10.hana.ondemand.com/add/Cities
+Content-Type: application/json
+
+{"ID":77,"name":"Pécs-new","descr":"new by bassel, located on the slopes of the Mecsek mountains in the south-west of the country ","status":"good ","weather":"cloudy"}
+
+### add Request
+POST https://fleetmanagement-srv-unexpected-possum-sr.cfapps.eu10.hana.ondemand.com/add/Requests
+Content-Type: application/json
+
+{"ID":701,"status":"valid","approval":"new by bassel, none","refund":8000,"requester_ID":6,"ride_ID":2}
+
+### add EnRouteCitie
+POST https://fleetmanagement-srv-unexpected-possum-sr.cfapps.eu10.hana.ondemand.com/add/EnRouteCities
+Content-Type: application/json
+
+{"ID":77,"city_ID":2,"ride_ID":3,"requester_ID":6}
+
+### add Member
+POST https://fleetmanagement-srv-unexpected-possum-sr.cfapps.eu10.hana.ondemand.com/add/Member
+Content-Type: application/json
+
+{"ID":77,"first_name":"Bassel","last_name":"new","gender":"male","credit":100,"birthdate":"26-06-1991","role_n":"DRIVER","password_n":"1234"}
+
+### add Chitchat
+POST https://fleetmanagement-srv-unexpected-possum-sr.cfapps.eu10.hana.ondemand.com/add/Chitchat
+Content-Type: application/json
+
+{"ID":77,"description":"new by bassel, very serious chat"}
+
+### add Music
+POST https://fleetmanagement-srv-unexpected-possum-sr.cfapps.eu10.hana.ondemand.com/add/Music
+
+{"ID":77,"description":"new by bassel, Jazz"}
+
+### add Luggage
+POST https://fleetmanagement-srv-unexpected-possum-sr.cfapps.eu10.hana.ondemand.com/add/Luggage
+Content-Type: application/json
+
+{"ID":77,"description":"new by bassel, CABIN-SIZED (19 TO 22 INCHES)"}
+
+### add Ride
+POST https://fleetmanagement-srv-unexpected-possum-sr.cfapps.eu10.hana.ondemand.com/add/Ride
+Content-Type: application/json
+
+{"ID":5,"ride_date":"q1/06/20","ride_time":"12:00","seats_available":6,"ride_status":"New","ride_fee":100,"seats_booked":2,"meeting_point":"Nap utca Budapest","cancel_reason":null,"vehicle_model":"edit by bassel, STATION WAGON.","vehicle_number":"edit by bassel, Chrysler Aspen Hybrid","vehicle_color":"Black","driver_ID":10,"source_ID":1,"destination_ID":3,"luggage_ID":2}
+
+### add Review
+POST https://fleetmanagement-srv-unexpected-possum-sr.cfapps.eu10.hana.ondemand.com/add/Review
+Content-Type: application/json
+
+{"ID":77,"score":9,"description":"good ride","traveler_ID":5,"driver_ID":2}
+
