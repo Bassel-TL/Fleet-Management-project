@@ -1,0 +1,21 @@
+COLUMN TABLE sap_capire_fleetmanagement_Member (
+  createdAt TIMESTAMP,
+  createdBy NVARCHAR(255),
+  modifiedAt TIMESTAMP,
+  modifiedBy NVARCHAR(255),
+  ID INTEGER NOT NULL,
+  first_name NVARCHAR(5000),
+  last_name NVARCHAR(5000),
+  gender NVARCHAR(5000),
+  credit INTEGER,
+  birthdate NVARCHAR(5000),
+  role_n NVARCHAR(5000),
+  password_n NVARCHAR(5000),
+  PRIMARY KEY(ID)
+) WITH ASSOCIATIONS (
+  MANY TO MANY JOIN sap_capire_fleetmanagement_Requests AS traveler_requests ON (traveler_requests.requester_ID = ID),
+  MANY TO MANY JOIN sap_capire_fleetmanagement_Ride AS rides ON (rides.driver_ID = ID),
+  MANY TO MANY JOIN sap_capire_fleetmanagement_Review AS driver_reviews ON (driver_reviews.driver_ID = ID),
+  MANY TO MANY JOIN sap_capire_fleetmanagement_Review AS travleler_reviews ON (travleler_reviews.traveler_ID = ID),
+  MANY TO MANY JOIN sap_capire_fleetmanagement_EnRouteCities AS enRouteCities ON (enRouteCities.requester_ID = ID)
+)

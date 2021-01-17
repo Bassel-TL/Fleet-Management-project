@@ -1,0 +1,8 @@
+VIEW CatalogService_Music AS SELECT
+  Music_0.createdAt,
+  Music_0.createdBy,
+  Music_0.modifiedAt,
+  Music_0.modifiedBy,
+  Music_0.ID,
+  Music_0.description
+FROM sap_capire_fleetmanagement_Music AS Music_0

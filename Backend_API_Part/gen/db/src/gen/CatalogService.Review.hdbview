@@ -1,0 +1,15 @@
+VIEW CatalogService_Review AS SELECT
+  Review_0.createdAt,
+  Review_0.createdBy,
+  Review_0.modifiedAt,
+  Review_0.modifiedBy,
+  Review_0.ID,
+  Review_0.score,
+  Review_0.description,
+  Review_0.traveler_ID,
+  Review_0.driver_ID
+FROM sap_capire_fleetmanagement_Review AS Review_0
+WITH ASSOCIATIONS (
+  MANY TO ONE JOIN CatalogService_Member AS traveler ON (traveler.ID = traveler_ID),
+  MANY TO ONE JOIN CatalogService_Member AS driver ON (driver.ID = driver_ID)
+)

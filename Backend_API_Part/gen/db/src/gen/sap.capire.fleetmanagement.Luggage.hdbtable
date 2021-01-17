@@ -1,0 +1,11 @@
+COLUMN TABLE sap_capire_fleetmanagement_Luggage (
+  createdAt TIMESTAMP,
+  createdBy NVARCHAR(255),
+  modifiedAt TIMESTAMP,
+  modifiedBy NVARCHAR(255),
+  ID INTEGER NOT NULL,
+  description NVARCHAR(5000),
+  PRIMARY KEY(ID)
+) WITH ASSOCIATIONS (
+  MANY TO MANY JOIN sap_capire_fleetmanagement_Ride AS rides ON (rides.luggage_ID = ID)
+)

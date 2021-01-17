@@ -1,0 +1,15 @@
+VIEW AdminService_EnRouteCities AS SELECT
+  EnRouteCities_0.createdAt,
+  EnRouteCities_0.createdBy,
+  EnRouteCities_0.modifiedAt,
+  EnRouteCities_0.modifiedBy,
+  EnRouteCities_0.ID,
+  EnRouteCities_0.city_ID,
+  EnRouteCities_0.ride_ID,
+  EnRouteCities_0.requester_ID
+FROM sap_capire_fleetmanagement_EnRouteCities AS EnRouteCities_0
+WITH ASSOCIATIONS (
+  MANY TO ONE JOIN AdminService_Cities AS city ON (city.ID = city_ID),
+  MANY TO ONE JOIN AdminService_Ride AS ride ON (ride.ID = ride_ID),
+  MANY TO ONE JOIN AdminService_Member AS requester ON (requester.ID = requester_ID)
+)

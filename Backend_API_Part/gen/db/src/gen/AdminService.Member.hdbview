@@ -1,0 +1,21 @@
+VIEW AdminService_Member AS SELECT
+  Member_0.createdAt,
+  Member_0.createdBy,
+  Member_0.modifiedAt,
+  Member_0.modifiedBy,
+  Member_0.ID,
+  Member_0.first_name,
+  Member_0.last_name,
+  Member_0.gender,
+  Member_0.credit,
+  Member_0.birthdate,
+  Member_0.role_n,
+  Member_0.password_n
+FROM sap_capire_fleetmanagement_Member AS Member_0
+WITH ASSOCIATIONS (
+  MANY TO MANY JOIN AdminService_Requests AS traveler_requests ON (traveler_requests.requester_ID = ID),
+  MANY TO MANY JOIN AdminService_Ride AS rides ON (rides.driver_ID = ID),
+  MANY TO MANY JOIN AdminService_Review AS driver_reviews ON (driver_reviews.driver_ID = ID),
+  MANY TO MANY JOIN AdminService_Review AS travleler_reviews ON (travleler_reviews.traveler_ID = ID),
+  MANY TO MANY JOIN AdminService_EnRouteCities AS enRouteCities ON (enRouteCities.requester_ID = ID)
+)

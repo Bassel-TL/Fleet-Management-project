@@ -1,0 +1,15 @@
+COLUMN TABLE sap_capire_fleetmanagement_Review (
+  createdAt TIMESTAMP,
+  createdBy NVARCHAR(255),
+  modifiedAt TIMESTAMP,
+  modifiedBy NVARCHAR(255),
+  ID INTEGER NOT NULL,
+  score INTEGER,
+  description NVARCHAR(500),
+  traveler_ID INTEGER,
+  driver_ID INTEGER,
+  PRIMARY KEY(ID)
+) WITH ASSOCIATIONS (
+  MANY TO ONE JOIN sap_capire_fleetmanagement_Member AS traveler ON (traveler.ID = traveler_ID),
+  MANY TO ONE JOIN sap_capire_fleetmanagement_Member AS driver ON (driver.ID = driver_ID)
+)

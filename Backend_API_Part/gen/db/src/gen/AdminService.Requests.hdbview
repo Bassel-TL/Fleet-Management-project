@@ -1,0 +1,16 @@
+VIEW AdminService_Requests AS SELECT
+  Requests_0.createdAt,
+  Requests_0.createdBy,
+  Requests_0.modifiedAt,
+  Requests_0.modifiedBy,
+  Requests_0.ID,
+  Requests_0.status,
+  Requests_0.approval,
+  Requests_0.refund,
+  Requests_0.requester_ID,
+  Requests_0.ride_ID
+FROM sap_capire_fleetmanagement_Requests AS Requests_0
+WITH ASSOCIATIONS (
+  MANY TO ONE JOIN AdminService_Member AS requester ON (requester.ID = requester_ID),
+  MANY TO ONE JOIN AdminService_Ride AS ride ON (ride.ID = ride_ID)
+)

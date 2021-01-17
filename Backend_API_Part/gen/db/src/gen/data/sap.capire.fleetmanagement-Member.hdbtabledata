@@ -1,0 +1,39 @@
+{
+  "format_version": 1,
+  "imports": [
+    {
+      "target_table": "SAP_CAPIRE_FLEETMANAGEMENT_MEMBER",
+      "source_data": {
+        "data_type": "CSV",
+        "file_name": "sap.capire.fleetmanagement-Member.csv",
+        "has_header": true,
+        "type_config": {
+          "delimiter": ";"
+        }
+      },
+      "import_settings": {
+        "import_columns": [
+          "ID",
+          "FIRST_NAME",
+          "LAST_NAME",
+          "GENDER",
+          "CREDIT",
+          "BIRTHDATE",
+          "ROLE_N",
+          "PASSWORD_N"
+        ],
+        "include_filter": []
+      },
+      "column_mappings": {
+        "ID": "ID",
+        "FIRST_NAME": "FIRST_NAME",
+        "LAST_NAME": "LAST_NAME",
+        "GENDER": "GENDER",
+        "CREDIT": "CREDIT",
+        "BIRTHDATE": "BIRTHDATE",
+        "ROLE_N": "ROLE_N",
+        "PASSWORD_N": "PASSWORD_N"
+      }
+    }
+  ]
+}

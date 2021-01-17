@@ -1,0 +1,11 @@
+VIEW ReqService_Luggage AS SELECT
+  Luggage_0.createdAt,
+  Luggage_0.createdBy,
+  Luggage_0.modifiedAt,
+  Luggage_0.modifiedBy,
+  Luggage_0.ID,
+  Luggage_0.description
+FROM sap_capire_fleetmanagement_Luggage AS Luggage_0
+WITH ASSOCIATIONS (
+  MANY TO MANY JOIN ReqService_Ride AS rides ON (rides.luggage_ID = ID)
+)

@@ -1,0 +1,80 @@
+## Generated mta.yaml based on template version 0.4.0
+## appName = fleetmanagement
+## language=nodejs; multiTenant=false
+## approuter=
+_schema-version: '3.1'
+ID: fleetmanagement
+version: 1.0.0
+description: "A simple CAP project."
+parameters:
+  enable-parallel-deployments: true
+   
+build-parameters:
+  before-all:
+   - builder: custom
+     commands:
+      - npm install --production
+      - npx -p @sap/cds-dk cds build --production
+
+modules:
+ # --------------------- SERVER MODULE ------------------------
+ - name: fleetmanagement-srv
+ # ------------------------------------------------------------
+   type: nodejs
+   path: gen/srv
+   requires:
+    # Resources extracted from CAP configuration
+    - name: fleetmanagement-db
+   provides:
+    - name: srv-api      # required by consumers of CAP services (e.g. approuter)
+      properties:
+        srv-url: ${default-url}
+   properties:
+      CORS:
+        - uriPattern: 
+          allowedMethods:
+            - GET
+            - POST
+            - PUT
+            - DELETE
+          allowedOrigin:
+            - host: '*.ondemand.com'
+ # -------------------- SIDECAR MODULE ------------------------
+ - name: fleetmanagement-db-deployer
+ # ------------------------------------------------------------
+   type: hdb
+   path: gen/db  
+   parameters:
+     buildpack: nodejs_buildpack
+   requires:
+    # 'hana' and 'xsuaa' resources extracted from CAP configuration
+    - name: fleetmanagement-db
+#    properties:
+#      CORS: '[{"uriPattern": "^/(.*)$", "allowedOrigin": [{"host":"<sac-host>", "protocol":"https"}], "allowedMethods": ["GET", "POST", "OPTIONS"], "allowedHeaders": ["Origin", "Accept", "X-Requested-With", "Content-Type", "Access-Control-Request-Method", "Access-Control-Request-Headers", "Authorization", "X-Sap-Cid", "X-Csrf-Token"], "exposeHeaders": ["Accept", "Authorization", "X-Requested-With", "X-Sap-Cid", "Access-Control-Allow-Origin", "Access-Control-Allow-Credentials", "X-Csrf-Token", "Content-Type"]}]'
+#      COOKIES: '{"SameSite": "None"}'
+#      INCOMING_CONNECTION_TIMEOUT: 600000
+#      TENANT_HOST_PATTERN: '^(.*).hana.ondemand.com'
+   properties:
+      CORS:
+        - uriPattern: 
+          allowedMethods:
+            - GET
+            - POST
+            - PUT
+            - DELETE
+          allowedOrigin:
+            - host: '*.ondemand.com'
+
+resources:
+ # services extracted from CAP configuration
+ # 'service-plan' can be configured via 'cds.requires.<name>.vcap.plan'
+# ------------------------------------------------------------
+ - name: fleetmanagement-db
+# ------------------------------------------------------------
+   type: com.sap.xs.hdi-container
+   parameters:
+     service: hanatrial  # or 'hanatrial' on trial landscapes
+     service-plan: hdi-shared
+   properties:
+     hdi-service-name: ${service-name}
+

@@ -1,0 +1,30 @@
+VIEW AdminService_Ride AS SELECT
+  Ride_0.createdAt,
+  Ride_0.createdBy,
+  Ride_0.modifiedAt,
+  Ride_0.modifiedBy,
+  Ride_0.ID,
+  Ride_0.ride_date,
+  Ride_0.ride_time,
+  Ride_0.seats_available,
+  Ride_0.ride_status,
+  Ride_0.ride_fee,
+  Ride_0.seats_booked,
+  Ride_0.meeting_point,
+  Ride_0.cancel_reason,
+  Ride_0.vehicle_model,
+  Ride_0.vehicle_number,
+  Ride_0.vehicle_color,
+  Ride_0.driver_ID,
+  Ride_0.source_ID,
+  Ride_0.destination_ID,
+  Ride_0.luggage_ID
+FROM sap_capire_fleetmanagement_Ride AS Ride_0
+WITH ASSOCIATIONS (
+  MANY TO ONE JOIN AdminService_Member AS driver ON (driver.ID = driver_ID),
+  MANY TO ONE JOIN AdminService_Cities AS source ON (source.ID = source_ID),
+  MANY TO ONE JOIN AdminService_Cities AS destination ON (destination.ID = destination_ID),
+  MANY TO ONE JOIN AdminService_Luggage AS luggage ON (luggage.ID = luggage_ID),
+  MANY TO MANY JOIN AdminService_Requests AS traveler_requests ON (traveler_requests.ride_ID = ID),
+  MANY TO MANY JOIN AdminService_Requests AS enroute_cities ON (enroute_cities.ride_ID = ID)
+)

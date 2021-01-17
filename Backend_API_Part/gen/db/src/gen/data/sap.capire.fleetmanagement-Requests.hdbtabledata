@@ -1,0 +1,35 @@
+{
+  "format_version": 1,
+  "imports": [
+    {
+      "target_table": "SAP_CAPIRE_FLEETMANAGEMENT_REQUESTS",
+      "source_data": {
+        "data_type": "CSV",
+        "file_name": "sap.capire.fleetmanagement-Requests.csv",
+        "has_header": true,
+        "type_config": {
+          "delimiter": ";"
+        }
+      },
+      "import_settings": {
+        "import_columns": [
+          "ID",
+          "REQUESTER_ID",
+          "RIDE_ID",
+          "STATUS",
+          "APPROVAL",
+          "REFUND"
+        ],
+        "include_filter": []
+      },
+      "column_mappings": {
+        "ID": "ID",
+        "REQUESTER_ID": "requester_ID",
+        "RIDE_ID": "ride_ID",
+        "STATUS": "status",
+        "APPROVAL": "approval",
+        "REFUND": "refund"
+      }
+    }
+  ]
+}

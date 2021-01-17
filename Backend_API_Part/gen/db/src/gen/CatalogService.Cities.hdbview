@@ -1,0 +1,16 @@
+VIEW CatalogService_Cities AS SELECT
+  Cities_0.createdAt,
+  Cities_0.createdBy,
+  Cities_0.modifiedAt,
+  Cities_0.modifiedBy,
+  Cities_0.ID,
+  Cities_0.name,
+  Cities_0.descr,
+  Cities_0.status,
+  Cities_0.weather
+FROM sap_capire_fleetmanagement_Cities AS Cities_0
+WITH ASSOCIATIONS (
+  MANY TO MANY JOIN CatalogService_EnRouteCities AS enRouteCities ON (enRouteCities.city_ID = ID),
+  MANY TO MANY JOIN CatalogService_Ride AS source_rides ON (source_rides.source_ID = ID),
+  MANY TO MANY JOIN CatalogService_Ride AS dest_rides ON (dest_rides.destination_ID = ID)
+)

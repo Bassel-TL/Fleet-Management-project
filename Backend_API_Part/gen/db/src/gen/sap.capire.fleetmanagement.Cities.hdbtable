@@ -1,0 +1,16 @@
+COLUMN TABLE sap_capire_fleetmanagement_Cities (
+  createdAt TIMESTAMP,
+  createdBy NVARCHAR(255),
+  modifiedAt TIMESTAMP,
+  modifiedBy NVARCHAR(255),
+  ID INTEGER NOT NULL,
+  name NVARCHAR(111),
+  descr NVARCHAR(1111),
+  status NVARCHAR(111),
+  weather NVARCHAR(111),
+  PRIMARY KEY(ID)
+) WITH ASSOCIATIONS (
+  MANY TO MANY JOIN sap_capire_fleetmanagement_EnRouteCities AS enRouteCities ON (enRouteCities.city_ID = ID),
+  MANY TO MANY JOIN sap_capire_fleetmanagement_Ride AS source_rides ON (source_rides.source_ID = ID),
+  MANY TO MANY JOIN sap_capire_fleetmanagement_Ride AS dest_rides ON (dest_rides.destination_ID = ID)
+)

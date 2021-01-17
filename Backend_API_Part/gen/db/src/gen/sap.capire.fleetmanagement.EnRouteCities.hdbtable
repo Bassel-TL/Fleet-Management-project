@@ -1,0 +1,15 @@
+COLUMN TABLE sap_capire_fleetmanagement_EnRouteCities (
+  createdAt TIMESTAMP,
+  createdBy NVARCHAR(255),
+  modifiedAt TIMESTAMP,
+  modifiedBy NVARCHAR(255),
+  ID INTEGER NOT NULL,
+  city_ID INTEGER,
+  ride_ID INTEGER,
+  requester_ID INTEGER,
+  PRIMARY KEY(ID)
+) WITH ASSOCIATIONS (
+  MANY TO ONE JOIN sap_capire_fleetmanagement_Cities AS city ON (city.ID = city_ID),
+  MANY TO ONE JOIN sap_capire_fleetmanagement_Ride AS ride ON (ride.ID = ride_ID),
+  MANY TO ONE JOIN sap_capire_fleetmanagement_Member AS requester ON (requester.ID = requester_ID)
+)

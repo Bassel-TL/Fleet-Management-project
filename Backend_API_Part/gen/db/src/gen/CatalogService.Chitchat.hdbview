@@ -1,0 +1,8 @@
+VIEW CatalogService_Chitchat AS SELECT
+  Chitchat_0.createdAt,
+  Chitchat_0.createdBy,
+  Chitchat_0.modifiedAt,
+  Chitchat_0.modifiedBy,
+  Chitchat_0.ID,
+  Chitchat_0.description
+FROM sap_capire_fleetmanagement_Chitchat AS Chitchat_0

@@ -1,0 +1,30 @@
+COLUMN TABLE sap_capire_fleetmanagement_Ride (
+  createdAt TIMESTAMP,
+  createdBy NVARCHAR(255),
+  modifiedAt TIMESTAMP,
+  modifiedBy NVARCHAR(255),
+  ID INTEGER NOT NULL,
+  ride_date NVARCHAR(111),
+  ride_time NVARCHAR(111),
+  seats_available INTEGER,
+  ride_status NVARCHAR(50),
+  ride_fee INTEGER,
+  seats_booked INTEGER,
+  meeting_point NVARCHAR(500),
+  cancel_reason NVARCHAR(500),
+  vehicle_model NVARCHAR(100),
+  vehicle_number NVARCHAR(100),
+  vehicle_color NVARCHAR(100),
+  driver_ID INTEGER,
+  source_ID INTEGER,
+  destination_ID INTEGER,
+  luggage_ID INTEGER,
+  PRIMARY KEY(ID)
+) WITH ASSOCIATIONS (
+  MANY TO ONE JOIN sap_capire_fleetmanagement_Member AS driver ON (driver.ID = driver_ID),
+  MANY TO ONE JOIN sap_capire_fleetmanagement_Cities AS source ON (source.ID = source_ID),
+  MANY TO ONE JOIN sap_capire_fleetmanagement_Cities AS destination ON (destination.ID = destination_ID),
+  MANY TO ONE JOIN sap_capire_fleetmanagement_Luggage AS luggage ON (luggage.ID = luggage_ID),
+  MANY TO MANY JOIN sap_capire_fleetmanagement_Requests AS traveler_requests ON (traveler_requests.ride_ID = ID),
+  MANY TO MANY JOIN sap_capire_fleetmanagement_Requests AS enroute_cities ON (enroute_cities.ride_ID = ID)
+)

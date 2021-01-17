@@ -1,0 +1,55 @@
+{
+  "format_version": 1,
+  "imports": [
+    {
+      "target_table": "SAP_CAPIRE_FLEETMANAGEMENT_RIDE",
+      "source_data": {
+        "data_type": "CSV",
+        "file_name": "sap.capire.fleetmanagement-Ride.csv",
+        "has_header": true,
+        "type_config": {
+          "delimiter": ";"
+        }
+      },
+      "import_settings": {
+        "import_columns": [
+          "ID",
+          "DRIVER_ID",
+          "SOURCE_ID",
+          "DESTINATION_ID",
+          "LUGGAGE_ID",
+          "RIDE_DATE",
+          "RIDE_TIME",
+          "SEATS_AVAILABLE",
+          "RIDE_STATUS",
+          "RIDE_FEE",
+          "SEATS_BOOKED",
+          "MEETING_POINT",
+          "CANCEL_REASON",
+          "VEHICLE_MODEL",
+          "VEHICLE_NUMBER",
+          "VEHICLE_COLOR"
+        ],
+        "include_filter": []
+      },
+      "column_mappings": {
+        "ID": "ID",
+        "DRIVER_ID": "driver_ID",
+        "SOURCE_ID": "source_ID",
+        "DESTINATION_ID": "destination_ID",
+        "LUGGAGE_ID": "luggage_ID",
+        "RIDE_DATE": "ride_date",
+        "RIDE_TIME": "ride_time",
+        "SEATS_AVAILABLE": "seats_available",
+        "RIDE_STATUS": "ride_status",
+        "RIDE_FEE": "ride_fee",
+        "SEATS_BOOKED": "seats_booked",
+        "MEETING_POINT": "meeting_point",
+        "CANCEL_REASON": "cancel_reason",
+        "VEHICLE_MODEL": "vehicle_model",
+        "VEHICLE_NUMBER": "vehicle_number",
+        "VEHICLE_COLOR": "vehicle_color"
+      }
+    }
+  ]
+}

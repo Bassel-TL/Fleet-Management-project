@@ -1,0 +1,9 @@
+COLUMN TABLE sap_capire_fleetmanagement_Chitchat (
+  createdAt TIMESTAMP,
+  createdBy NVARCHAR(255),
+  modifiedAt TIMESTAMP,
+  modifiedBy NVARCHAR(255),
+  ID INTEGER NOT NULL,
+  description NVARCHAR(5000),
+  PRIMARY KEY(ID)
+)
