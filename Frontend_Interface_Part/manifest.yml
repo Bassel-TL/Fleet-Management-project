@@ -1,0 +1,8 @@
+---
+applications:
+- name: fleetManagement-ang
+  path: dist/
+  random-route: true
+  buildpacks:
+      - staticfile_buildpack
+  memory: 512M

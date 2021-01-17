@@ -1,0 +1,107 @@
+<!--<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title"> Simple Table</h4>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class=" text-primary">
+              <th>
+                ID
+              </th>
+              <th>
+                Description
+              </th>
+            </thead>
+            <tbody *ngFor="let chitChat of chitchats">
+              <tr>
+                <td>
+                  {{chitChat.ID}}
+                </td>
+                <td>
+                  {{chitChat.description}}
+                </td>
+           
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+<div class="row">
+  <p-toast></p-toast>
+
+  <div class="card">
+    <p-toolbar styleClass="p-mb-4">
+        <ng-template pTemplate="left">
+            <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>
+        </ng-template>
+  
+        <!-- <ng-template pTemplate="right">
+        </ng-template> -->
+    </p-toolbar>
+  
+    <p-table #dt [value]="chitchats" [rows]="10" [paginator]="true" [globalFilterFields]="['Id','description']"
+        [(selection)]="selectedChitchats" [rowHover]="true" dataKey="id"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+        <ng-template pTemplate="caption">
+            <div class="p-d-flex p-ai-center p-jc-between">
+                <h5 class="p-m-0">Manage Chitchat Preference</h5>
+                <span class="p-input-icon-left">
+                    <!-- <i class="pi pi-search"></i> -->
+                    <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search..." />
+                </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 3rem">
+                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                </th>
+                <th pSortableColumn="Id">Id <p-sortIcon field="Id"></p-sortIcon></th>
+                <th pSortableColumn="description">Description <p-sortIcon field="price"></p-sortIcon></th>
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-chitchat>
+            <tr>
+                <td>
+                    <p-tableCheckbox [value]="chitchat"></p-tableCheckbox>
+                </td>
+                <td>{{chitchat.ID}}</td>
+                <td>{{chitchat.description}}</td>
+                <td>
+                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editChitchat(chitchat)"></button>
+                   
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+            <div class="p-d-flex p-ai-center p-jc-between">
+                In total there are {{chitchats ? chitchats.length : 0 }} chitchat preference.
+            </div>
+        </ng-template>
+    </p-table>
+  </div>
+  
+  <p-dialog [(visible)]="chitchatDialog" [style]="{width: '450px'}" header="chitchat Details" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+    
+        <div class="p-field">
+            <label for="description">Description</label>
+            <textarea id="description" pInputTextarea [(ngModel)]="chitchat.description" required rows="3" cols="20"></textarea>
+        </div>
+    </ng-template>
+    
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveChitchat()"></button>
+    </ng-template>
+  </p-dialog>
+  
+  <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+</div>

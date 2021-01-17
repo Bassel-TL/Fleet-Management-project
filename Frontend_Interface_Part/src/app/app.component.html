@@ -1,0 +1,48 @@
+
+<div *ngIf="isHome; then homePage else dashboardPage"></div>
+<ng-template #homePage>
+    <div class="overlay"></div>
+    <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
+      <source src="../assets/mp4/bg.mp4" type="video/mp4">
+    </video>
+    
+    <div class="masthead">
+      <div class="masthead-bg"></div>
+      <div class="container h-100">
+        <div class="row h-100">
+          <div class="col-12 my-auto">
+            <div class="masthead-content text-white py-5 py-md-0">
+              <h2 class="mb-3 header">Welcome to SAP Fleet Management</h2>
+              <p class="mb-5 info">We're the world's leading long distance carpooling service, 
+                  connecting drivers with empty seats to people travelling the same way.</p>
+                <div *ngIf="isLogin; then loginForm else registerForm"></div>
+                <ng-template #loginForm>
+                    <input type="text" name="username" [(ngModel)]="username" class="form-control" placeholder="Enter username..." aria-label="Enter username..." aria-describedby="submit-button">
+                    <input type="password" name="password" [(ngModel)]="password" class="form-control" placeholder="Enter password..." aria-label="Enter password..." aria-describedby="submit-button">
+                    <button class="btn btn-secondary" type="button" id="submit-button" (click)="Login()">Log In!</button>
+                    <button type="button" id="submit-button" class="btn btn-secondary register" (click)="RegisterForm()">Don't have an account? (register)</button>
+                    <p class="redColor" *ngIf="invalidLogin">username or password are invalid</p>
+                </ng-template>
+                <ng-template #registerForm>
+                    <input type="text" class="form-control" placeholder="Enter username..." aria-label="Enter username..." aria-describedby="submit-button">
+                    <input type="text" class="form-control" placeholder="Enter last name..." aria-label="Enter last name..." aria-describedby="submit-button">
+                    <input type="date" class="form-control" placeholder="Enter birthdate..." aria-label="Enter birthdate..." aria-describedby="submit-button">
+                    <input type="password" class="form-control" placeholder="Enter password..." aria-label="Enter password..." aria-describedby="submit-button">
+                    <input type="radio" id="male" name="gender" value="male"><label for="male">Male</label>
+                    <input style="margin-left: 10px;" type="radio" id="female" name="gender" value="female"><label for="female">Female</label>
+                    <br>
+                    <button class="btn btn-secondary" type="button" id="submit-button" (click)="Register()">Register!</button>
+                    <button type="button" id="submit-button" class="btn btn-secondary register" (click)="LoginForm()">Back to Login!</button>
+                </ng-template>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</ng-template>
+<ng-template #dashboardPage>
+    <router-outlet></router-outlet>
+</ng-template>
+
+
+

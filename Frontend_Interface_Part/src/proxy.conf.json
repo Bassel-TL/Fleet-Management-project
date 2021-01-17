@@ -1,0 +1,6 @@
+{
+    "/admin/*": {
+        "target": "https://fleetmanagement-srv-unexpected-possum-sr.cfapps.eu10.hana.ondemand.com",
+        "secure": false
+    }
+}
