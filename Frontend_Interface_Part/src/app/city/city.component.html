@@ -1,0 +1,146 @@
+<!-- <div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title"> Simple Table</h4>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class=" text-primary">
+              <th>
+                Name
+              </th>
+              <th>
+                Description
+              </th>
+              <th>
+                Status
+              </th>
+              <th class="text-right">
+                Weather
+              </th>
+                <th class="text-right">
+                CreatedAt
+              </th>
+            </thead>
+            <tbody *ngFor="let city of cities">
+              <tr>
+                <td>
+                  {{city.name}}
+                </td>
+                <td>
+                  {{city.descr}}
+                </td>
+                <td>
+                   {{city.status}}
+                </td>
+                <td class="text-right">
+                  {{city.weather}}
+                </td>
+                 <td class="text-right">
+                  {{city.createdAt}}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+<div class="row">
+  <p-toast></p-toast>
+
+  <div class="card">
+    <p-toolbar styleClass="p-mb-4">
+        <ng-template pTemplate="left">
+            <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>
+            <!-- <button pButton pRipple [label]="Delete" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedCitys()" [disabled]="!selectedCitys || !selectedCitys.length"></button> -->
+        </ng-template>
+  
+        <!-- <ng-template pTemplate="right">
+        </ng-template> -->
+    </p-toolbar>
+  
+    <p-table #dt [value]="cities" [rows]="10" [paginator]="true" [globalFilterFields]="['name','descr','status','weather']"
+        [(selection)]="selectedCities" [rowHover]="true" dataKey="id"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+        <ng-template pTemplate="caption">
+            <div class="p-d-flex p-ai-center p-jc-between">
+                <h5 class="p-m-0">Manage Citys</h5>
+                <span class="p-input-icon-left">
+                    <!-- <i class="pi pi-search"></i> -->
+                    <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search..." />
+                </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 3rem">
+                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                </th>
+                <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
+                <th pSortableColumn="descr">Description <p-sortIcon field="descr"></p-sortIcon></th>              
+                <th pSortableColumn="status">Status <p-sortIcon field="status"></p-sortIcon></th>
+                <th pSortableColumn="weather">Weather <p-sortIcon field="weather"></p-sortIcon></th>
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-city>
+            <tr>
+                <td>
+                    <p-tableCheckbox [value]="city"></p-tableCheckbox>
+                </td>
+                <td>{{city.name}}</td>
+                <td>{{city.descr}}</td>
+                <td>{{city.status}}</td>
+                <td>{{city.weather}}</td>
+                <td>
+                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editCity(city)"></button>
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteCity(city)"></button>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+            <div class="p-d-flex p-ai-center p-jc-between">
+                In total there are {{cities ? cities.length : 0 }} cities.
+            </div>
+        </ng-template>
+    </p-table>
+  </div>
+  
+  <p-dialog [(visible)]="cityDialog" [style]="{width: '450px'}" header="City Details" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <img [src]="'assets/showcase/images/demo/city/' + city.image" [alt]="city.image" class="city-image" *ngIf="city.image">
+        <div class="p-field">
+            <label for="name">Name</label>
+            <input type="text" pInputText id="name" [(ngModel)]="city.name" required autofocus />
+            <small class="p-invalid" *ngIf="submitted && !city.name">Name is required.</small>
+        </div>
+        <div class="p-field">
+            <label for="descr">Description</label>
+            <textarea id="Description" pInputTextarea [(ngModel)]="city.descr" required rows="3" cols="20"></textarea>
+        </div>
+         <div class="p-field">
+            <label for="weather">Weather</label>
+            <textarea id="weather" pInputTextarea [(ngModel)]="city.weather" required rows="3" cols="20"></textarea>
+        </div>
+        <div class="p-field">
+            <label for="status"> Status</label>
+            <p-dropdown [(ngModel)]="city.status" inputId="status" [options]="statuses" placeholder="Select">
+                <ng-template let-option pTemplate="item">
+                    <span [class]="'city-badge status-' + option.value">{{option.label}}</span>
+                </ng-template>
+            </p-dropdown>
+        </div>
+    </ng-template>
+    
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveCity()"></button>
+    </ng-template>
+  </p-dialog>
+  
+  <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+</div>

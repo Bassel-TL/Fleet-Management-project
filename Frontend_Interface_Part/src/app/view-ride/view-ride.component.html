@@ -1,0 +1,121 @@
+<div class="row">
+    <div class="card">
+        <p-table #dt [value]="rides" [rows]="10" [paginator]="true" [globalFilterFields]="['ID','ride_date','source','destination', 'ride_status']"
+        [(selection)]="selectedRides" [rowHover]="true" dataKey="ID"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+        <ng-template pTemplate="caption">
+            <div class="p-d-flex p-ai-center p-jc-between">
+                <h5 class="p-m-0">Manage Rides</h5>
+                <span class="p-input-icon-left">
+                    <!-- <i class="pi pi-search"></i> -->
+                    <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search..." />
+                </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 3rem">
+                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                </th>
+                <th pSortableColumn="ID">ID <p-sortIcon field="ID"></p-sortIcon></th>
+                <th pSortableColumn="ride_date">ride_date <p-sortIcon field="ride_date"></p-sortIcon></th>
+                <th pSortableColumn="source">source <p-sortIcon field="source"></p-sortIcon></th>
+                <th pSortableColumn="destination">destination <p-sortIcon field="destination"></p-sortIcon></th>
+                <th pSortableColumn="ride_status">ride_status <p-sortIcon field="ride_status"></p-sortIcon></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-ride>
+            <tr>
+                <td>
+                    <p-tableCheckbox [value]="ride"></p-tableCheckbox>
+                </td>
+                <td>{{ride.ID}}</td>
+                <td>{{ride.ride_date}}</td>
+                <td>{{ride.source}}</td>
+                <td>{{ride.destination}}</td>
+                <td>{{ride.ride_status}}</td>
+                <td>
+                    <button pButton pRipple icon="pi pi-check" class="p-button-rounded p-button-success p-mr-2" (click)="editRideStatus(ride)"></button>
+                    <button pButton pRipple icon="pi pi-times" class="p-button-rounded p-button-warning" (click)="deleteRide(ride)"></button>
+                </td>
+                <td>
+                    <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-success p-mr-2" (click)="viewRide(ride)"></button>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+            <div class="p-d-flex p-ai-center p-jc-between">
+                In total there are {{rides ? rides.length : 0 }} rides.
+            </div>
+        </ng-template>
+    </p-table>
+
+    <p-dialog [(visible)]="rideDialog" [style]="{width: '450px'}" header="User Details" [modal]="true" styleClass="p-fluid">
+        <ng-template pTemplate="content">
+            <div class="p-field">
+                <label for="name">Ride Date</label>
+                <input type="text" pInputText id="last_name" value="{{this.selectedRideToView.ride_date}}" readonly autofocus />
+            </div>
+            <div class="p-field">
+                <label for="name">Ride Time</label>
+                <input type="text" pInputText id="last_name" value="{{this.selectedRideToView.ride_time}}" readonly autofocus />
+            </div>
+            <div class="p-field">
+                <label for="name">Ride Status</label>
+                <input type="text" pInputText id="last_name" value="{{this.selectedRideToView.ride_status}}" readonly autofocus />
+            </div>
+            <div class="p-field">
+                <label for="name">Meeting Point</label>
+                <input type="text" pInputText id="last_name" value="{{this.selectedRideToView.meeting_point}}" readonly autofocus />
+            </div>
+            <div class="p-field">
+                <label for="name">Ride Fee</label>
+                <input type="text" pInputText id="last_name" value="{{this.selectedRideToView.ride_fee}}" readonly autofocus />
+            </div>
+            <div class="p-field">
+                <label for="name">Seats Available</label>
+                <input type="text" pInputText id="last_name" value="{{this.selectedRideToView.seats_available}}" readonly autofocus />
+            </div>
+            <div class="p-field">
+                <label for="name">Vehicle Model</label>
+                <input type="text" pInputText id="last_name" value="{{this.selectedRideToView.vehicle_model}}" readonly autofocus />
+            </div>
+            <div class="p-field">
+                <label for="name">Vehicle Number</label>
+                <input type="text" pInputText id="last_name" value="{{this.selectedRideToView.vehicle_number}}" readonly autofocus />
+            </div>
+             <!-- <div class="p-field">
+                <label for="name">First Name</label>
+                <input type="text" pInputText id="first_name" [(ngModel)]="user.first_name" required autofocus />
+                <small class="p-invalid" *ngIf="submitted && !user.first_name">First Name is required.</small>
+            </div>
+             <div class="p-field">
+                <label for="gender"> Gender</label>
+                <p-dropdown [(ngModel)]="user.gender" inputId="gender" [options]="genders" placeholder="Select">
+                    <ng-template let-option pTemplate="item">
+                        <span [class]="'user-badge status-' + option.value">{{option.label}}</span>
+                    </ng-template>
+                </p-dropdown>
+            </div>
+            <div class="p-field">
+                <label for="descr">Credit</label>
+                <input type="number" pInputText id="credit" [(ngModel)]="user.credit" required autofocus />
+            </div>
+             <div class="p-field">
+                <label for="role_n"> Role</label>
+                <p-dropdown [(ngModel)]="user.role_n" inputId="role_n" [options]="roles" placeholder="Select">
+                    <ng-template let-option pTemplate="item">
+                        <span [class]="'user-badge status-' + option.value">{{option.label}}</span>
+                    </ng-template>
+                </p-dropdown>
+            </div> -->
+        </ng-template>
+        
+        <ng-template pTemplate="footer">
+            <button pButton pRipple label="Ok" icon="pi pi-check" class="p-button-text" (click)="hideRide()"></button>
+        </ng-template>
+      </p-dialog>
+    </div>
+</div>

@@ -1,0 +1,108 @@
+<!-- <div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title"> Simple Table</h4>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class=" text-primary">
+              <th>
+                ID
+              </th>
+              <th>
+                Description
+              </th>
+            </thead>
+            <tbody *ngFor="let music of musics">
+              <tr>
+                <td>
+                  {{music.ID}}
+                </td>
+                <td>
+                  {{music.description}}
+                </td>
+           
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+-->
+<div class="row">
+  <p-toast></p-toast>
+
+  <div class="card">
+    <p-toolbar styleClass="p-mb-4">
+        <ng-template pTemplate="left">
+            <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>
+        </ng-template>
+  
+        <!-- <ng-template pTemplate="right">
+        </ng-template> -->
+    </p-toolbar>
+  
+    <p-table #dt [value]="musics" [rows]="10" [paginator]="true" [globalFilterFields]="['Id','description']"
+        [(selection)]="selectedMusics" [rowHover]="true" dataKey="id"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+        <ng-template pTemplate="caption">
+            <div class="p-d-flex p-ai-center p-jc-between">
+                <h5 class="p-m-0">Manage Music Preference</h5>
+                <span class="p-input-icon-left">
+                    <!-- <i class="pi pi-search"></i> -->
+                    <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search..." />
+                </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 3rem">
+                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                </th>
+                <th pSortableColumn="Id">Id <p-sortIcon field="Id"></p-sortIcon></th>
+                <th pSortableColumn="description">Description <p-sortIcon field="price"></p-sortIcon></th>
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-music>
+            <tr>
+                <td>
+                    <p-tableCheckbox [value]="music"></p-tableCheckbox>
+                </td>
+                <td>{{music.ID}}</td>
+                <td>{{music.description}}</td>
+                <td>
+                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editMusic(music)"></button>
+                   
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+            <div class="p-d-flex p-ai-center p-jc-between">
+                In total there are {{musics ? musics.length : 0 }} music preference.
+            </div>
+        </ng-template>
+    </p-table>
+  </div>
+  
+  <p-dialog [(visible)]="musicDialog" [style]="{width: '450px'}" header="music Details" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+    
+        <div class="p-field">
+            <label for="description">Description</label>
+            <textarea id="description" pInputTextarea [(ngModel)]="music.description" required rows="3" cols="20"></textarea>
+        </div>
+    </ng-template>
+    
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveMusic()"></button>
+    </ng-template>
+  </p-dialog>
+  
+  <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+</div>

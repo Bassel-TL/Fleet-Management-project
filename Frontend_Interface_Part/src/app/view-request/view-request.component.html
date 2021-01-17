@@ -1,0 +1,90 @@
+<div class="row">
+    <div class="card">
+        <p-table #dt [value]="rides" [rows]="10" [paginator]="true" [globalFilterFields]="['ID','ride_date','source','destination', 'ride_status']"
+        [(selection)]="selectedRide" [rowHover]="true" dataKey="ID" (onRowSelect)="onRowSelect($event)"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+        <ng-template pTemplate="caption">
+            <div class="p-d-flex p-ai-center p-jc-between">
+                <h5 class="p-m-0">Manage Rides</h5>
+                <span class="p-input-icon-left">
+                    <!-- <i class="pi pi-search"></i> -->
+                    <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search..." />
+                </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 3rem"></th>
+                <th pSortableColumn="ID">ID <p-sortIcon field="ID"></p-sortIcon></th>
+                <th pSortableColumn="ride_date">ride_date <p-sortIcon field="ride_date"></p-sortIcon></th>
+                <th pSortableColumn="source">source <p-sortIcon field="source"></p-sortIcon></th>
+                <th pSortableColumn="destination">destination <p-sortIcon field="destination"></p-sortIcon></th>
+                <th pSortableColumn="ride_status">ride_status <p-sortIcon field="ride_status"></p-sortIcon></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-ride>
+            <tr>
+                <td>
+                    <p-tableRadioButton [value]="ride"></p-tableRadioButton>
+                </td>
+                <td>{{ride.ID}}</td>
+                <td>{{ride.ride_date}}</td>
+                <td>{{ride.source}}</td>
+                <td>{{ride.destination}}</td>
+                <td>{{ride.ride_status}}</td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+            <div class="p-d-flex p-ai-center p-jc-between">
+                In total there are {{rides ? rides.length : 0 }} rides.
+            </div>
+        </ng-template>
+        </p-table>
+    </div>
+
+
+    <div class="card">
+        <p-table #dt [value]="requests" [rows]="10" [paginator]="true" [globalFilterFields]="['requester_ID','first_name','last_name','gender', 'status']"
+             [rowHover]="true" dataKey="requester_ID" 
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+        <ng-template pTemplate="caption">
+            <div class="p-d-flex p-ai-center p-jc-between">
+                <h5 class="p-m-0">Manage Requests</h5>
+                <span class="p-input-icon-left">
+                    <!-- <i class="pi pi-search"></i> -->
+                    <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search..." />
+                </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="requester_ID">requester_ID <p-sortIcon field="requester_ID"></p-sortIcon></th>
+                <th pSortableColumn="first_name">first_name <p-sortIcon field="first_name"></p-sortIcon></th>
+                <th pSortableColumn="last_name">last_name <p-sortIcon field="last_name"></p-sortIcon></th>
+                <th pSortableColumn="gender">gender <p-sortIcon field="gender"></p-sortIcon></th>
+                <th pSortableColumn="status">status <p-sortIcon field="status"></p-sortIcon></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-request>
+            <tr>
+                <td>{{request.requester_ID}}</td>
+                <td>{{request.first_name}}</td>
+                <td>{{request.last_name}}</td>
+                <td>{{request.gender}}</td>
+                <td>{{request.status}}</td>
+                <td>
+                    <button pButton pRipple icon="pi pi-check" class="p-button-rounded p-button-success p-mr-2" (click)="approveRequest(request)"></button>  
+                </td>
+                <td>
+                    <button pButton pRipple icon="pi pi-times" class="p-button-rounded p-button-warning" (click)="rejectRequest(request)"></button>
+                </td>
+            </tr>
+        </ng-template>
+        </p-table>
+    </div>
+
+    
+</div>
+

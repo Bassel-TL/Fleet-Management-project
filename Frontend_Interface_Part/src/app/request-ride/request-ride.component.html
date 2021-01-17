@@ -1,0 +1,91 @@
+<div class="row">
+  <p-toast></p-toast>
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">View Rides</h4>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table">
+              <thead class=" text-primary">
+                <th>
+                    ride date
+                </th>
+                <th>
+                    seats available
+                </th>
+                <th>
+                  From
+                </th>
+                <th class="text-right">
+                    ride status
+                </th>
+                <th class="text-right">
+                    ride fee
+                </th>
+                <th class="text-right">
+                    seats booked
+                </th>
+                <th class="text-right">
+                    meeting point
+                </th>
+                <th class="text-right">
+                    vehicle model
+                </th>
+                <th class="text-right">
+                    vehicle color
+                </th>
+                <th class="text-right">
+                    
+                </th>
+              </thead>
+              <tbody *ngFor="let ride of ridesExten">
+                <tr>
+                  <td>
+                   {{ride.ride_date}}
+                  </td>
+                  <td>
+                    {{ride.seats_available}}
+                  </td>
+                  <td>
+                    {{ride.source_name}}
+                  </td>
+                  <td>
+                    {{ride.ride_status}}
+                  </td>
+                  <td>
+                    {{ride.ride_fee}}
+                  </td>
+                  <td>
+                    {{ride.seats_booked}}
+                  </td>
+                  <td>
+                    {{ride.meeting_point}}
+                  </td>
+                  <td>
+                    {{ride.vehicle_model}}
+                  </td>
+                  <td>
+                    {{ride.vehicle_color}}
+                  </td>
+                  <td>
+                  </td>
+                  <div *ngIf="ride.seats_available > ride.seats_booked">
+                  <td class="text-right" >
+                    <button type="button" class="button btn-danger" (click)='add(ride.ID)'>Request</button>
+                  </td>
+                </div>
+                </tr>
+              </tbody>
+            </table>
+            <p-dialog header="alert" [(visible)]="display">
+              not enough money
+          </p-dialog>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    </div>
+  

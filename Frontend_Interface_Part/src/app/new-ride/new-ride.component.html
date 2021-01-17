@@ -1,0 +1,103 @@
+<div class="row">
+    <p-toast></p-toast>
+    <div class="col-md-12">
+        <div class="card card-user">
+          <div class="card-header">
+            <h5 class="card-title">Create New Ride</h5>
+          </div>
+          <div class="card-body">
+            <form>
+              <div class="row">
+                <div class="col-md-6 pr-1">
+                  <div class="form-group">
+                    <label for="start">Start date:</label>
+                    <input type="date" id="start" name="trip-start"[(ngModel)]="newRide.ride_date">
+                  </div>
+                </div>
+                <div class="col-md-6 pl-1">
+                  <div class="form-group">
+                    <label for="start_time">Start time:</label>
+                    <input type="time" id="start_time" name="trip-start"[(ngModel)]="newRide.ride_time">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 pr-1">
+                  <div class="form-group">
+                    <label for="seats">Seats Available:</label>
+                    <input type="number" id="seats" name="trip-time"[(ngModel)]="newRide.seats_available">
+                  </div>
+                </div>
+                <div class="col-md-6 pl-1">
+                  <div class="form-group">
+                    <label for="seatsBook">Seats Booked:</label>
+                    <input type="number" id="seatsBook" name="trip-time"[(ngModel)]="newRide.seats_booked">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 pr-1">
+                  <div class="form-group">
+                    <label for="fees">Ride Fees:</label>
+                    <input type="number" id="fees" name="trip-fee"[(ngModel)]="newRide.ride_fee">
+                  </div>
+                </div>
+                <div class="col-md-6 pl-1">
+                  <div class="form-group">
+                    <label for="point">Meeting Point:</label>
+                    <input type="text" id="point" name="trip-point"[(ngModel)]="newRide.meeting_point">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 pr-1">
+                  <div class="form-group">
+                    <label for="vmodel">Vehicle model:</label>
+                    <input type="text" id="vmodel" name="trip-point"[(ngModel)]="newRide.vehicle_model">
+                  </div>
+                </div>
+                <div class="col-md-6 pl-1">
+                  <div class="form-group">
+                    <label for="vmodel">Vehicle number:</label>
+                    <input type="text" id="vmodel" name="trip-point"[(ngModel)]="newRide.vehicle_number">
+                  </div>
+                </div>
+                <div class="col-md-6 pr-1">
+                    <div class="form-group">
+                        <label for="vmodel">Vehicle color:</label>
+                        <input type="text" id="vmodel" name="trip-point"[(ngModel)]="newRide.vehicle_color">
+                    </div>
+                  </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 pr-1">
+                  <div class="form-group">
+                    <label>Source City:</label>
+                    <p-dropdown [options]="cities" [(ngModel)]="selectedCityS" optionLabel="name"></p-dropdown>
+                  </div>
+                </div>
+                <div class="col-md-6 pl-1">
+                  <div class="form-group">
+                    <label>Destination City:</label>
+                    <p-dropdown [options]="cities" [(ngModel)]="selectedCityD" optionLabel="name"></p-dropdown>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 pr-1">
+                  <div class="form-group">
+                    <label>Luggage:</label>
+                    <p-dropdown [options]="luggages" [(ngModel)]="selectedLuggage" optionLabel="name"></p-dropdown>
+                  </div>
+                </div>
+                <div class="col-md-6 pl-1">
+                  <div class="form-group">
+                    <p-button label="Create Ride" (onClick)="submitRide($event)"></p-button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+</div>
