@@ -3,7 +3,7 @@ This project about Fleet-Management was set up by a team of master's students at
 
 
 
-Links | 
+.. | Links
 ---------|----------
 Trello | https://trello.com/b/UAvwOHXd/fleet-management-project
 Backend part Services Interface: | https://3ef8d4a2trial-dev-fleetmanagement-srv.cfapps.eu10.hana.ondemand.com/
